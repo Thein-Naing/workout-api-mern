@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv').config();
 const PORT = process.env.PORT || 4000;
 const workouts = require('./routes/workouts.js');
+const bodyParser = require("body-parser");
 
 
 //create express app.
@@ -24,6 +25,7 @@ app.use((req, res, next) => {
 
 //routes
 app.use('/api/workouts', workouts);
+app.use(bodyParser.json());
 
 // connect MongoDB.
 mongoose.connect(process.env.MONGO_URI)
@@ -33,7 +35,7 @@ mongoose.connect(process.env.MONGO_URI)
   });
 })
 .catch((error) => {
-  console.log({mssg: error.message})
+  console.log({message: error.message})
 })
 //listen for requests aka connected to server.
 // app.listen(process.env.PORT, ()=> {
