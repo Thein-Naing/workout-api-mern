@@ -4,7 +4,8 @@
 
 2- I changed folders/ files name and also some codings and css styling as per my layman/idiot understanding.
 
-<img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/8feac612-ac50-4c16-9272-76dcdbf705c1">
+<img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/2295e4b4-1301-48db-90a1-b45e5c18caad">
+
 
 
 
