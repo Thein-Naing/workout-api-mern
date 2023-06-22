@@ -83,7 +83,7 @@ return user
 
 const signup = async (req, res)=> {
 
-  // destructure the user object
+  // destructure the user object by grabbing from req
   
     const { email, password } = req.body
     
