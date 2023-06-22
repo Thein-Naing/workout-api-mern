@@ -74,6 +74,43 @@ return User
 }
 
 
+`[6]` we will create signup function  fully in controller like that; 
+
+const signup = async (req, res)=> {
+
+  // destructure the user object
+  
+    const { email, password } = req.body
+    
+    try { // then create and test user signup.
+    
+      const user = await User.signup({email, password})
+      
+      // then return res with user's email and created user object.
+      
+      res.status(200).json({email, user})
+
+    } catch (error) {
+    
+      res.status(400).json({error: error.message})
+    }
+
+  }
+
+  we also need to change arrow function to normal function in User model statics method because we use this instead of User ;
+
+  // use static signup method
+  
+// User.statics.signup = async (email, password)=> {
+
+  // we use this instead of User so we must make normal function instead of arrow function.
+  
+User.statics.signup = async function (email, password) {
+...
+....}
+
+we will test this function in postman first.
+
 
 
 
