@@ -230,10 +230,41 @@ userSchema.statics.login = async function (email, password) {
 
 
 
+`[12]` `we will also create  login function in controller same procedure as signup as below;`
+
+//login user
+
+const login = async (req, res) => {
+
+  const { email, password } = req.body;
+  
+  try {
+  
+    const user = await User.login(email, password);
+
+    // create jwt token here.
+    
+    const token = createToken(user._id);
+
+    // then send token back to browser
+    
+    res.status(200).json({ email, token });
+    
+  } catch (error) {
+  
+    res.status(400).json({ error: error.message });
+    
+  }
+
+};
+
+` and  tested in Postman , checked in mongodb and working fine.`
 
 
 
+<img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/1eab45c5-799a-471b-ad3e-d8ee28e94ed0">
 
+<img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/13d717f2-8f8f-4071-a8e7-efe1f93afeeb">
 
 
 
