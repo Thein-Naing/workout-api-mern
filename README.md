@@ -72,9 +72,9 @@ const hash = await bcrypt.hash(password, salt)
 const user = await this.create({email, password: hash})
 
 
-// return User
+// return created user (not User model)
 
-return User
+return user
 
 }
 
