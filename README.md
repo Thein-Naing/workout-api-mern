@@ -36,7 +36,7 @@ salt : random string of characters that gets added to user's password before it'
 
 npm i bcrypt
 
-we will create new user function in User model using User schema . we will use so called statics signup method and e.t.c as follows;
+ Firstly we will create new user function in User model using User schema . we will use so called statics signup method and e.t.c as follows;
 
 // use static signup method
 
