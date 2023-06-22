@@ -186,6 +186,49 @@ const createToken = (_id) => {
 
 //SECRET= xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
+`[11]` `we will create login function inside User model , same procedure as signup except using bcrypt.compare method :`
+
+// use static login method 
+
+userSchema.statics.login = async function (email, password) {
+
+  // we use this instead of User so we must make normal function instead of arrow function.
+  
+
+  if (!email || !password) {
+  
+    throw Error("All fill must be filled");
+    
+  }
+
+  // 1st we will check user with this email is already exist.
+  
+  const user = await this.findOne({ email });
+  
+  if (!user) {
+  
+    throw Error("Incorrect email");
+    
+  }
+  
+  // 2nd if user  exist,  we have to match password and hashed password(user.password).
+  
+  // we will use bcrypt.compare method.
+  
+  const match = await bcrypt.compare(password, user.password)
+  
+  if(!match) {
+  
+    throw Error("Incorrect password");
+    
+  }
+
+ return user
+
+};
+
+
+
 
 
 
