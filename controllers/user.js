@@ -1,16 +1,12 @@
 // import User model/schema.
 const User = require("../models/User");
+
 // import jwt
-const jwt = require('jsonwebtoken');
+const jwt = require("jsonwebtoken");
+
 const createToken = (_id) => {
-  return
-  jwt.sign({_id}, process.env.JWTSECRET_KEY, {expiresIn: '3d'})
-
-}
-
-
-
-
+  return jwt.sign({ _id }, process.env.SECRET, { expiresIn: "3d" });
+};
 
 //login user
 const login = async (req, res) => {
@@ -20,38 +16,19 @@ const login = async (req, res) => {
 //signup user
 
 const signup = async (req, res) => {
-
-  const { email, password } = req.body
+  const { email, password } = req.body;
   try {
     const user = await User.signup(email, password);
-    res.status(200).json({ email, user });
+
+    // create jwt token here.
+    const token = createToken(user._id);
+
+    // then send token back to browser
+    res.status(200).json({ email, token });
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
 };
 
 // export login/signup user functions
-module.exports = {  login,  signup };
-
-
-// const User = require('../models/User')
-
-// // login a user
-// const login  = async (req, res) => {
-//   res.json({mssg: 'login user'})
-// }
-
-// // signup a user
-// const signup = async (req, res) => {
-//   const {email, password} = req.body
-
-//   try {
-//     const user = await User.signup(email, password)
-
-//     res.status(200).json({email, user})
-//   } catch (error) {
-//     res.status(400).json({error: error.message})
-//   }
-// }
-
-// module.exports = { signup, login}
+module.exports = { login, signup };
