@@ -118,6 +118,31 @@ User.statics.signup = async function (email, password) {
 
 <img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/806f6dcc-4e38-4e5b-8acc-0a1019950af9">
 
+`[7]` `We have to validate before checking user email exist `
+ So we install validator package  npm i validator and test in User model as follow and we will also test in postman. 
+ 
+ // validation
+ 
+if (!email || !password) {
+
+  throw Error('All fields must be filled')
+  
+}
+
+if(!validator.isEmail(email)) {
+
+  throw Error('Email is not valid')
+  
+}
+
+if(!validator.isStrongPassword(password)) {
+
+  throw Error('Password is not strong enough')
+  
+}
+
+
+
 
 
 
