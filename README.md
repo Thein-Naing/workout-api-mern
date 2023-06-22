@@ -164,10 +164,13 @@ const createToken = (_id) => {
 
 
 
-`[8]` `Now tested in Postman & mongodb,  our jwt token function is working fine.`
+`[8]` `Now tested in Postman & checked in mongodb,  our jwt token function is working fine.`
 
-<img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/48b88640-3377-4a51-aefd-3b70aeb22950">
-<img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/81f3b5fe-4ea0-4cf6-8d35-516db5bfc8e7">
+<img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/0c088ab1-65ce-45b7-bc24-a090413d30f0">
+
+<img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/3061e8c0-1c75-452d-a0cf-94df8c9f5d3e">
+
+
 
 
 
