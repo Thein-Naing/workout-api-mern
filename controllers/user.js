@@ -1,5 +1,16 @@
 // import User model/schema.
 const User = require("../models/User");
+// import jwt
+const jwt = require('jsonwebtoken');
+const createToken = (_id) => {
+  return
+  jwt.sign({_id}, process.env.JWTSECRET_KEY, {expiresIn: '3d'})
+
+}
+
+
+
+
 
 //login user
 const login = async (req, res) => {
