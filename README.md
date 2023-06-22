@@ -84,7 +84,7 @@ const signup = async (req, res)=> {
     
     try { // then create and test user signup.
     
-      const user = await User.signup({email, password})
+      const user = await User.signup(email, password)
       
       // then return res with user's email and created user object.
       
