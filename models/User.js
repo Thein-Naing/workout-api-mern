@@ -3,7 +3,10 @@ const mongoose = require('mongoose');
 //import bcrypt.
 const bcrypt = require('bcrypt');
 
-const User = new mongoose.Schema({
+// install validator and import .
+const validator = require('validator');
+
+const userSchema = new mongoose.Schema({
   email:{
     type: String,
     required: true,
@@ -17,9 +20,24 @@ const User = new mongoose.Schema({
 });
 
 // use static signup method
-// User.statics.signup = async (email, password)=> {
+userSchema.statics.signup = async function(email, password) {
   // we use this instead of User so we must make normal function instead of arrow function.
-User.statics.signup = async function (email, password) {
+// userSchema.statics.signup = async function (email, password) {
+
+// validation
+if (!email || !password) {
+  throw Error('All fill must be filled')
+}
+
+if(!validator.isEmail(email)) {
+  throw Error('Email is not valid')
+}
+
+if(!validator.isStrongPassword(password)) {
+  throw Error('Password is not strong enough')
+}
+
+
 
 // 1st we will check email is already exist.we do not have user at the moment, so we use this.
 const exists = await this.findOne({email})
@@ -38,14 +56,47 @@ const user = await this.create({email, password: hash})
 
 
 // return User
-return User
+return user
 
 }
 
 
+module.exports = mongoose.model('User', userSchema)
 
 
+// const mongoose = require('mongoose')
+// const bcrypt = require('bcrypt')
 
+// const Schema = mongoose.Schema
 
+// const userSchema = new Schema({
+//   email: {
+//     type: String,
+//     required: true,
+//     unique: true
+//   },
 
-module.exports = mongoose.model('User', User)
+//   password: {
+//     type: String,
+//     required: true
+//   }
+// })
+
+// // static signup method
+// userSchema.statics.signup = async function(email, password) {
+
+//   const exists = await this.findOne({ email })
+
+//   if (exists) {
+//     throw Error('Email already in use')
+//   }
+
+//   const salt = await bcrypt.genSalt(10)
+//   const hash = await bcrypt.hash(password, salt)
+
+//   const user = await this.create({ email, password: hash })
+
+//   return user
+// }
+
+// module.exports = mongoose.model('User', userSchema)
