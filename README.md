@@ -146,6 +146,8 @@ if(!validator.isStrongPassword(password)) {
 <img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/ecc83923-2cfa-4542-bbc4-c27b45c128b4">
 <img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/710aa447-1dae-400c-8c21-ede9a7d9c67b">
 <img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/44ea0617-b111-4ea3-a247-13f65253c6cb">
+<img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/dba0f3be-e24a-4c1f-afe7-27264f903608">
+
 
 
 
