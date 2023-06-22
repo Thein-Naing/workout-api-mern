@@ -148,6 +148,22 @@ if(!validator.isStrongPassword(password)) {
 <img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/44ea0617-b111-4ea3-a247-13f65253c6cb">
 <img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/dba0f3be-e24a-4c1f-afe7-27264f903608">
 
+`[7]` `we will add jwt into our user controller so that we can generate jwt token when user signup function fire up.`
+
+npm i jsonwebtoken
+
+const jwt = require('jsonwebtoken');
+
+const createToken = (_id) => {
+
+  return
+  
+  jwt.sign({_id}, process.env.JWTSECRET_KEY, {expiresIn: '3d'})
+
+}
+
+
+
 
 
 
