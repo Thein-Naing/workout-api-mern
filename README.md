@@ -16,7 +16,21 @@
 
 
 
+`[4]` Clarification notes
 
+express : Express is minimal and flexible Node.js web applicaton framework.
+
+mongoose : Mongoose is an Object Data Modeling (ODM) library for MongoDB and Node.js.
+
+jsonwebtoken : It's a compact URL of representing claims to be transferred between two parties.
+
+bcrypt : It's a password hashing function. It force us to use salt.
+
+joi : Joi is an object schema description language and validator for javascript objects.
+
+dotenv : It loads environment variables from a .env file.
+
+salt : random string of characters that gets added to user's password before it's get hashed.
 
 
 
