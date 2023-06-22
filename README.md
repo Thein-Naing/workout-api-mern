@@ -32,7 +32,7 @@
 
 `salt : random string of characters that gets added to user's password before it's get hashed.`
 
-`async, await : every single page application interaction with database is nature of async. async will take longer time to return promise so you have to use await (this is my layman/idiot understanding may be wrong)`
+`async, await : every single page application interaction with database is nature of async. async will take longer time to return promise so you have to use await (this is my layman/idiot understanding and may be wrong)`
 
 `[5]` `For login and signup we need to use bcrypt/jwt/joi and e.t.c.`
 
@@ -147,6 +147,47 @@ if(!validator.isStrongPassword(password)) {
 <img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/710aa447-1dae-400c-8c21-ede9a7d9c67b">
 <img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/44ea0617-b111-4ea3-a247-13f65253c6cb">
 <img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/dba0f3be-e24a-4c1f-afe7-27264f903608">
+
+`[7]` `we will add jwt into our user controller so that we can generate jwt token when user signup function fire up.`
+
+npm i jsonwebtoken
+
+const jwt = require('jsonwebtoken');
+
+const createToken = (_id) => {
+
+  return
+  
+  jwt.sign({_id}, process.env.SECRET, {expiresIn: '3d'})
+
+}
+
+
+
+`[8]` `Now tested in Postman & checked in mongodb,  our jwt token function  and signup function in user controller is working fine.`
+
+<img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/0c088ab1-65ce-45b7-bc24-a090413d30f0">
+
+<img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/3061e8c0-1c75-452d-a0cf-94df8c9f5d3e">
+
+`[9]In Postman , we checked returned token , and confirmed 3 parts of jwt token, header, payload and signature. This mean our jwt function is working properly.`
+<img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/284caf12-402e-457d-b431-91fa4a229a62">
+<img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/dd413359-0997-4099-a070-7266584adb09">
+
+`[10] I forgot to mention, we have to creat JWT SECRET KEY in .env file. You can generate this secret key by following this steps;`
+
+// cd server/backend then 
+
+// type : node 
+
+// then type require('crypto').randomBytes(64).toString('hex')
+
+// you will get 64 digit secret key & copy and paste it in .env. 
+
+//SECRET= xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+
+
 
 
 
