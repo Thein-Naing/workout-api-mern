@@ -158,7 +158,7 @@ const createToken = (_id) => {
 
   return
   
-  jwt.sign({_id}, process.env.JWTSECRET_KEY, {expiresIn: '3d'})
+  jwt.sign({_id}, process.env.SECRET, {expiresIn: '3d'})
 
 }
 
