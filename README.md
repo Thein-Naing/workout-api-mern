@@ -109,7 +109,9 @@ User.statics.signup = async function (email, password) {
 ...
 ....}
 
-we will test this function in postman first.
+we will test this function in postman first. we got it hashed password and unique id in post man .It means our signup function with bcrypt/salt hashing is working fine.
+
+<img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/806f6dcc-4e38-4e5b-8acc-0a1019950af9">
 
 
 
