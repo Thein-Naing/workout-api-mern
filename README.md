@@ -18,21 +18,21 @@
 
 `[4]` `Clarification notes`
 
-express : Express is minimal and flexible Node.js web applicaton framework.
+`express : Express is minimal and flexible Node.js web applicaton framework.`
 
-mongoose : Mongoose is an Object Data Modeling (ODM) library for MongoDB and Node.js.
+`mongoose : Mongoose is an Object Data Modeling (ODM) library for MongoDB and Node.js.`
 
-jsonwebtoken : It's a compact URL of representing claims to be transferred between two parties.
+`jsonwebtoken : It's a compact URL of representing claims to be transferred between two parties.`
 
-bcrypt : It's a password hashing function. It force us to use salt.
+`bcrypt : It's a password hashing function. It force us to use salt.`
 
-joi : Joi is an object schema description language and validator for javascript objects.
+`joi : Joi is an object schema description language and validator for javascript objects.`
 
-dotenv : It loads environment variables from a .env file.
+`dotenv : It loads environment variables from a .env file.`
 
-salt : random string of characters that gets added to user's password before it's get hashed.
+`salt : random string of characters that gets added to user's password before it's get hashed.`
 
-async, await : every single page application interaction with database is nature of async. async will take longer time to return promise so you have to use await (this is my layman/idiot understanding may be wrong)
+`async, await : every single page application interaction with database is nature of async. async will take longer time to return promise so you have to use await (this is my layman/idiot understanding may be wrong)`
 
 `[5]` `For login and signup we need to use bcrypt/jwt/joi and e.t.c.`
 
