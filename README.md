@@ -164,7 +164,7 @@ const createToken = (_id) => {
 
 
 
-`[8]` `Now tested in Postman & checked in mongodb,  our jwt token function is working fine.`
+`[8]` `Now tested in Postman & checked in mongodb,  our jwt token function  and signup function in user controller is working fine.`
 
 <img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/0c088ab1-65ce-45b7-bc24-a090413d30f0">
 
@@ -174,7 +174,7 @@ const createToken = (_id) => {
 <img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/284caf12-402e-457d-b431-91fa4a229a62">
 <img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/dd413359-0997-4099-a070-7266584adb09">
 
-`[10]`` I forgot to mention, we have to creat JWT SECRET KEY in .env file. You can generate this secret key by following this steps;`
+`[10] I forgot to mention, we have to creat JWT SECRET KEY in .env file. You can generate this secret key by following this steps;`
 
 // cd server/backend then 
 
