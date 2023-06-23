@@ -5,7 +5,8 @@
 `[2]`- `I changed folders/ files name and also some codings and css styling as per my layman/idiot understanding.`
 
 
-<img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/eddbc3a3-9b52-4f96-8a97-71da04e66ae2">
+<img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/ee9c75b7-5537-4f73-9ef7-8df4f2e023ce">
+
 
 
 
