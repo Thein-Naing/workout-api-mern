@@ -553,9 +553,20 @@ const Navbar = () => {
     </header>
 
   )
-}
+
+  }
 
 export default Navbar;
+
+  `[14]` `Already tested in dev tool for login and signup .It is working fine but we need to generate jwt token .`
+
+  <img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/e4b453cb-3814-4bc3-aba0-cfcc4e3c56f9">
+  <img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/ccb33f42-cb5e-4b91-859c-8141b21f159b">
+  <img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/e9d1682a-9e48-4e08-aa53-72bb5be26284">
+
+
+
+
 
 
 
