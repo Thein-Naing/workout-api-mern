@@ -679,6 +679,36 @@ export default Signup;
 
 
 
+`[16]` `Also create useLogout.js hook in hooks folder.`
+
+// import useAuthContext
+
+import { useAuthContext } from "./useAuthContext";
+
+export const useLogout = () => {
+
+  const { dispatch } = useAuthContext();
+  
+  const logout = () => {
+  
+    //remove user from storage
+    
+    localStorage.setItem("user");
+
+    //dispatch the logout action
+    
+    dispatch({ type: "LOGOUT" });
+    
+  };
+
+  return { logout };
+  
+};
+
+
+// use this hook inside Navbar.
+
+
 
 
 
