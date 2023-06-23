@@ -25,7 +25,7 @@ userSchema.statics.signup = async function (email, password) {
 
   // validation
   if (!email || !password) {
-    throw Error("All fill must be filled");
+    throw Error("All field must be filled");
   }
 
   if (!validator.isEmail(email)) {
@@ -58,7 +58,7 @@ userSchema.statics.signup = async function (email, password) {
 // use static login method
 userSchema.statics.login = async function (email, password) {
   // we use this instead of User so we must make normal function instead of arrow function.
-  // userSchema.statics.login = async function (email, password) {
+  // User.statics.login = async function (email, password) {
 
   if (!email || !password) {
     throw Error("All fill must be filled");

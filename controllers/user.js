@@ -10,11 +10,23 @@ const createToken = (_id) => {
 
 //login user
 const login = async (req, res) => {
-  res.json({ mssg: "login user" });
+  const { email, password } = req.body;
+  try {
+    const user = await User.login(email, password);
+
+    // create jwt token here.
+    const token = createToken(user._id);
+
+    // then send token back to browser
+    res.status(200).json({ email, token });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+
 };
 
-//signup user
 
+//signup user
 const signup = async (req, res) => {
   const { email, password } = req.body;
   try {
