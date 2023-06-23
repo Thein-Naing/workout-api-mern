@@ -777,7 +777,7 @@ export default Navbar
 
 <img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/e0e735bd-89b4-4f07-a598-7a5bfab267dd">
 
-`[19]` `created useLogin hook and implemented in Login form and tested it and all working fine.
+`[19]` `created useLogin hook and implemented in Login form and tested it and all working fine`.
 
 import { useState } from 'react'
 
