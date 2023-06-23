@@ -331,6 +331,18 @@ export const AuthContextProvider= ({children}) => {
   console.log('AuthContext state:', state)
 }
 
+ // 6. then wrap children with provider. childern = entire app
+ 
+  return (
+  
+    <AuthContext.Provider value={{ ...state, dispatch }}>
+    
+      {children}
+      
+    </AuthContext.Provider>
+    
+  );
+
 
 
 
