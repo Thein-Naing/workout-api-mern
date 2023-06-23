@@ -570,7 +570,7 @@ const Navbar = () => {
 
 export default Navbar;
 
-  `[14]` `Already tested in dev tool for login and signup .It is working fine but we need to generate jwt token for safety. So we have to create custom/reusable hooks for Signup/Login/Logout for UI. Now logic is when we click button in Signup/Login components it will invoke console.log(email, password) and UI will show us this email and password. We will use the reusable/custom made hooks to do all of the logic.`
+  `[14]` `Already tested in dev tool for login and signup .It is working fine but we need to generate jwt token for safety. So we have to create custom/reusable hooks for Signup/Login/Logout for UI. Now logic is when we click button in Signup/Login components it will invoke console.log(email, password)(we will change logic later) and UI will show us this email and password. We will use the reusable/custom made hooks to handle all of the logic.`
 
   <img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/e4b453cb-3814-4bc3-aba0-cfcc4e3c56f9">
   <img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/ccb33f42-cb5e-4b91-859c-8141b21f159b">
