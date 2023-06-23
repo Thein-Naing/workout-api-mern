@@ -450,7 +450,85 @@ const Signup = () => {
 export default Signup;
 
 
+// create Login form same as Signup page .
 
+import { useState, useEffect } from "react";
+
+const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log(email, password);
+  };
+  return (
+    <form className="signup" onSubmit={handleSubmit}>
+      <h3>Login</h3>
+
+      <label>Email:</label>
+      <input
+        type="email"
+        onChange={(e) => setEmail(e.target.value)}
+        value={email}
+      />
+
+      <label>Password:</label>
+      <input
+        type="password"
+        onChange={(e) => setPassword(e.target.value)}
+        value={password}
+      />
+      <button>Log in</button>
+    </form>
+  );
+};
+
+export default Login;
+
+//then export to route(App.js)
+
+import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+
+import Home from './pages/Home';
+import Navbar from './components/Navbar';
+import Signup from './pages/Signup';
+import Login from './pages/Login';
+// import WorkoutForm from './components/WorkoutForm';
+
+
+function App() {
+  return (
+    <div className="App">
+      <Router>
+        <Navbar />
+        <div className='pages'>
+          <Routes>
+
+            <Route
+            path="/"
+            element={ <Home />}
+            />
+
+            <Route
+            path="/signup"
+            element={ <Signup />}
+            />
+
+            <Route
+            path="/login"
+            element={ <Login />}
+            />
+
+          </Routes>
+        </div>
+      </Router>
+
+    </div>
+  );
+}
+
+export default App;
 
 
 
