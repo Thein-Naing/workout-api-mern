@@ -393,7 +393,7 @@ export const useAuthContext = () => {
 }
 
 
-9.//create Signup.js for signup forn in pages folder:
+9.//create Signup.js for signup form in pages folder:
 
 import { useState, useEffect } from "react";
 
@@ -558,7 +558,7 @@ const Navbar = () => {
 
 export default Navbar;
 
-  `[14]` `Already tested in dev tool for login and signup .It is working fine but we need to generate jwt token .`
+  `[14]` `Already tested in dev tool for login and signup .It is working fine but we need to generate jwt token. So we have to create custom reusable hooks for SIgnup/Login/Logout  for UI.`
 
   <img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/e4b453cb-3814-4bc3-aba0-cfcc4e3c56f9">
   <img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/ccb33f42-cb5e-4b91-859c-8141b21f159b">
