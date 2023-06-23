@@ -886,6 +886,23 @@ const Navbar = () => {
 
 
 
+`[21]``we updated AuthContext hook as below and test it . Now after refresh, user value is still in server and logiin in.
 
+import { createContext, useReducer, useEffect } from "react";
 
+ //7. import and call useEffect once with JSON.parse.
+ 
+  useEffect(() =>{
+  
+    const user = JSON.parse(localStorage.getItem('user'))
+    
+    if (user) {
+    
+      dispatch({ type:"LOGIN", payload: user})
+      
+    }
+    
+  }, [])
+
+<img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/444ccf42-ae53-4e8c-a182-8b5fb88ce088">
 
