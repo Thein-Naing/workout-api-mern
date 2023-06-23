@@ -829,8 +829,60 @@ export const useLogin = () => {
 <img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/7cc30511-32ec-4ffe-bb31-8aa2230b853c">
 
 
+`[20]` `update Navbar for user status and test it ok but when we refresh the page all gone so we have to fix it. `
+
+import { Link } from 'react-router-dom';
+
+import { useAuthContext } from '../hooks/useAuthContext'
 
 
+//import useLogout
+
+import { useLogout } from '../hooks/useLogout'
+
+const Navbar = () => {
+
+  const { logout } = useLogout()
+  
+  const { user } = useAuthContext()
+  
+
+  const handleClick = () => {
+  
+    logout()
+    
+  }
+
+  return (
+  
+    <header>
+    
+      <div className="container">
+      
+        <Link to="/">
+
+        
+          <h1>Workout Buddy</h1>
+          
+        </Link>
+        
+        <nav>
+          {user && (
+          <div>
+            <span>{user.email}</span>
+            <button onClick={handleClick}>Log out</button>
+          </div>)}
+          {!user &&
+          (<div>
+            <Link to="/login">Login</Link>
+            <Link to="/signup">Signup</Link>
+          </div>)}
+        </nav>
+      </div>
+    </header>
+  )
+
+<img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/9993cd67-dc83-411c-b1f3-d169b311977e">
 
 
 
