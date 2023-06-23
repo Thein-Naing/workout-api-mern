@@ -368,6 +368,29 @@ root.render(
   
 );
 
+8.//create useAuthContext.js custom hook.
+
+if we wanna use our AuthContext value /user value on state in any components, we just invoke useAuthContext hook , destructure the user from
+
+context object and also can use in other components as well bec we also declare dispatch.
+
+import { AuthContext } from "../context/AuthContext";
+
+import { useContext } from "react";
+
+
+export const useAuthContext = () => {
+
+  const context = useContext(AuthContext)
+  
+  if(!context) {
+  
+    throw Error('useAuthContext must be ued inside an AuthContextProvider')
+    
+  }
+
+  return context
+}
 
 
 
