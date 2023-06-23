@@ -579,6 +579,102 @@ export default Navbar;
 
 
 
+`[15]` Created useSignup.js hook for Signup form and test it .
+
+import { useState } from "react";
+import { useAuthContext } from "./useAuthContext";
+
+export const useSignup = () => {
+  const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(null);
+  const {dispatch} = useAuthContext()
+
+  const signup = async (email, password) => {
+    setIsLoading(true);
+    setError(null);
+
+    const response = await fetch("/api/user/signup", {
+      method: "POST",
+      headers: { "Content-type": "application/json" },
+      body: JSON.stringify({ email, password }),
+    });
+    const json = await response.json();
+    if (!response.ok) {
+      setError(json.error);
+      setIsLoading(false);
+    }
+
+    if (response.ok) {
+      //save the user to local storage
+      localStorage.setItem("user", JSON.stringify(json));
+            //update the auth context
+      dispatch({type:'LOGIN', payload:json})
+
+      setIsLoading(false);
+
+    }
+  }
+  return { signup, isLoading, error}
+};
+
+
+//then export to Signup.js component
+
+// then update Signup.js
+
+import { useState } from "react";
+import { useSignup } from "../hooks/useSignup";
+
+const Signup = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  //invoke useSignup hook
+  const {signup, error, isLoading} = useSignup();
+
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    // console.log(email, password);
+    //replace with useSignup hook state
+    await signup(email, password)
+
+
+  };
+  return (
+    <form className="signup" onSubmit={handleSubmit}>
+      <h3>Signup</h3>
+
+      <label>Email:</label>
+      <input
+        type="email"
+        onChange={(e) => setEmail(e.target.value)}
+        value={email}
+      />
+
+      <label>Password:</label>
+      <input
+        type="password"
+        onChange={(e) => setPassword(e.target.value)}
+        value={password}
+      />
+            <button disable={isLoading}>Sign up</button>
+      {error && <div className='error'>{error}</div>}
+    </form>
+  );
+};
+
+// disable button when isLoading is false.
+
+export default Signup;
+
+ `header/payload/signature all are woking. but AuthContext state: is still {user: Null} we have to fix it.`
+
+<img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/cf75ca36-dd57-4320-8d5f-b7ba37305761">
+
+
+
+
 
 
 
