@@ -5,7 +5,8 @@
 `[2]`- `I changed folders/ files name and also some codings and css styling as per my layman/idiot understanding.`
 
 
-<img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/eddbc3a3-9b52-4f96-8a97-71da04e66ae2">
+<img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/ee9c75b7-5537-4f73-9ef7-8df4f2e023ce">
+
 
 
 
@@ -186,15 +187,267 @@ const createToken = (_id) => {
 
 //SECRET= xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
+`[11]` `we will create login function inside User model , same procedure as signup except using bcrypt.compare method :`
+
+// use static login method 
+
+userSchema.statics.login = async function (email, password) {
+
+  // we use this instead of User so we must make normal function instead of arrow function.
+  
+
+  if (!email || !password) {
+  
+    throw Error("All field must be filled");
+    
+  }
+
+  // 1st we will check user with this email is already exist.
+  
+  const user = await this.findOne({ email });
+  
+  if (!user) {
+  
+    throw Error("Incorrect email");
+    
+  }
+  
+  // 2nd if user  exist,  we have to match password and hashed password(user.password).
+  
+  // we will use bcrypt.compare method.
+  
+  const match = await bcrypt.compare(password, user.password)
+  
+  if(!match) {
+  
+    throw Error("Incorrect password");
+    
+  }
+
+ return user
+
+};
 
 
 
 
+`[12]` `we will also create  login function in controller same procedure as signup as below;`
+
+//login user
+
+const login = async (req, res) => {
+
+  const { email, password } = req.body;
+  
+  try {
+  
+    const user = await User.login(email, password);
+
+    // create jwt token here.
+    
+    const token = createToken(user._id);
+
+    // then send token back to browser
+    
+    res.status(200).json({ email, token });
+    
+  } catch (error) {
+  
+    res.status(400).json({ error: error.message });
+    
+  }
+
+};
+
+` and  tested in Postman , checked in mongodb and working fine.`
 
 
 
+<img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/1eab45c5-799a-471b-ad3e-d8ee28e94ed0">
+
+<img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/13d717f2-8f8f-4071-a8e7-efe1f93afeeb">
 
 
+
+`[13]` ` we will create login/logout  and signup UI in frontend. We will create Context hook as belows;`
+
+// 1.import createContext function from react
+
+import { createContext, useReducer } from "react";
+
+//2.then store/create require context for provider & export it.
+
+export const AuthContext = createContext();
+
+
+//4. then create authReducer function for provider & export.
+
+export const authReducer = (state, action) => {
+
+  // inside function we will handle all cases. here login and logout cases.
+  
+  // so we will use switch method.
+  
+  switch(action.type) {
+  
+    case 'LOGIN':
+    
+      return {user: action.payload}
+      
+    case 'LOGOUT':
+    
+      return {user: null}
+      
+    default:
+    
+      return state
+      
+  } 
+  
+}
+
+// 3.then using this context to create provider function into our application component tree
+
+//so that all our components can access it.
+
+// provider function take children as argument aka props
+
+// children represent whatever this provider wrap whatever components
+
+export const AuthContextProvider= ({children}) => {
+
+  // register the useReducer state and export it
+  
+  // 1st argument is authReducer fuction & 2nd argument is initial state value.
+  
+  const [state, dispatch ] = useReducer(authReducer, {
+  
+    user: null
+    
+  })
+
+
+  //5. test it  and console/log it.
+  
+  console.log('AuthContext state:', state)
+}
+
+ // 6. then wrap children with provider. childern = entire app
+ 
+  return (
+  
+    <AuthContext.Provider value={{ ...state, dispatch }}>
+    
+      {children}
+      
+    </AuthContext.Provider>
+    
+  );
+
+  // 7. then export to index.js and render it.
+
+import { AuthContextProvider } from "./context/AuthContext";
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+
+root.render(
+
+  <React.StrictMode>
+  
+    <AuthContextProvider>
+    
+      <WorkoutsContextProvider>
+      
+        <App />
+        
+      </WorkoutsContextProvider>
+      
+    </AuthContextProvider>
+    
+  </React.StrictMode>
+  
+);
+
+8.//create useAuthContext.js custom hook.
+
+if we wanna use our AuthContext value /user value on state in any components, we just invoke useAuthContext hook , destructure the user from
+
+context object and also can use in other components as well bec we also declare dispatch.
+
+import { AuthContext } from "../context/AuthContext";
+
+import { useContext } from "react";
+
+
+export const useAuthContext = () => {
+
+  const context = useContext(AuthContext)
+  
+  if(!context) {
+  
+    throw Error('useAuthContext must be ued inside an AuthContextProvider')
+    
+  }
+
+  return context
+}
+
+
+9.//create Signup.js for signup forn in pages folder:
+
+import { useState, useEffect } from "react";
+
+const Signup = () => {
+
+  const [email, setEmail] = useState("");
+  
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = async (e) => {
+  
+    e.preventDefault();
+    
+    console.log(email, password);
+  };
+  
+  return (
+  
+    <form className="signup" onSubmit={handleSubmit}>
+    
+      <h3>Signup</h3>
+
+      <label>Email:</label>
+      
+      <input
+      
+        type="email"
+        
+        onChange={(e) => setEmail(e.target.value)}
+        
+        value={email}
+        
+      />
+
+      <label>Password:</label>
+      
+      <input
+      
+        type="password"
+        
+        onChange={(e) => setPassword(e.target.value)}
+        
+        value={password}
+        
+      />
+      <button>Sign up </button>
+      
+    </form>
+    
+  );
+  
+};
+
+export default Signup;
 
 
 
