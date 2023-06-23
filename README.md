@@ -886,7 +886,7 @@ const Navbar = () => {
 
 
 
-`[21]``we updated AuthContext hook as below and test it . Now after refresh, user value is still in server and logiin in.`
+`[21]we updated AuthContext hook as below and test it . Now after refresh, user value is still in server and loging in.`
 
 import { createContext, useReducer, useEffect } from "react";
 
