@@ -706,7 +706,76 @@ export const useLogout = () => {
 };
 
 
-// use this hook inside Navbar.
+// use this hook inside Navbar. 
+
+`[17]` ` in Navbar , create a button for log0ut, made css styling .et.c. Now we have logout button.`
+
+import { Link } from 'react-router-dom';
+
+//import useLogout
+
+import { useLogout } from '../hooks/useLogout'
+
+const Navbar = () => {
+
+  const { logout } = useLogout()
+
+  const handleClick = () => {
+  
+    logout()
+    
+  }
+
+  return (
+  
+    <header>
+      <div className="container">
+      
+        <Link to="/">
+        
+          <h1>Workout Buddy</h1>
+          
+        </Link>
+        
+        <nav>
+
+                  <div>
+          
+            <button onClick={handleClick}>Log out</button>
+            
+          </div>
+          
+          <div>
+          
+            <Link to="/login">Login</Link>
+            
+            <Link to="/signup">Signup</Link>
+            
+          </div>
+          
+        </nav>
+        
+      </div>
+      
+    </header>
+    
+  )
+  
+}
+
+export default Navbar
+
+
+
+<img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/476520b6-663a-47bb-a1b1-ca9958fa30a8">
+
+<img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/912ce8a0-224a-4f72-a34d-7e3351fe4c7f">
+<img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/a3cacd85-fa6c-42b0-a723-eb185bae9aac">
+
+
+
+
+
 
 
 
