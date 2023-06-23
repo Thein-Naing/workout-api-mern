@@ -773,6 +773,9 @@ export default Navbar
 <img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/a3cacd85-fa6c-42b0-a723-eb185bae9aac">
 
 
+`[18]` `tested logout function working fine. But we nedd to create useLogin hook also`
+
+<img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/e0e735bd-89b4-4f07-a598-7a5bfab267dd">
 
 
 
