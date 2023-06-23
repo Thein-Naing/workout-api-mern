@@ -777,6 +777,59 @@ export default Navbar
 
 <img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/e0e735bd-89b4-4f07-a598-7a5bfab267dd">
 
+`[19]` `created useLogin hook and implemented in Login form and tested it and all working fine.
+
+import { useState } from 'react'
+
+import { useAuthContext } from './useAuthContext'
+
+export const useLogin = () => {
+
+  const [error, setError] = useState(null)
+  
+  const [isLoading, setIsLoading] = useState(null)
+  
+  const { dispatch } = useAuthContext()
+
+  const login = async (email, password) => {
+  
+    setIsLoading(true)
+    
+    setError(null)
+
+    const response = await fetch('/api/user/login', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({ email, password })
+    })
+    const json = await response.json()
+
+    if (!response.ok) {
+      setIsLoading(false)
+      setError(json.error)
+    }
+    if (response.ok) {
+      // save the user to local storage
+      localStorage.setItem('user', JSON.stringify(json))
+
+      // update the auth context
+      dispatch({type: 'LOGIN', payload: json})
+
+      // update loading state
+      setIsLoading(false)
+    }
+  }
+
+  return { login, isLoading, error }
+}
+
+`login`
+<img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/f934fca1-512b-4e6b-b1d9-581989dc27fe">
+`logout`
+<img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/7cc30511-32ec-4ffe-bb31-8aa2230b853c">
+
+
+
 
 
 
