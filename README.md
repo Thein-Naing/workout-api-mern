@@ -672,6 +672,9 @@ export default Signup;
 
 <img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/cf75ca36-dd57-4320-8d5f-b7ba37305761">
 
+`in local storage , signup user is already saved.`
+<img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/dab467af-cff6-4edf-bc67-45e48297b913">
+
 
 
 
