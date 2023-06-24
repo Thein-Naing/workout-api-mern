@@ -996,5 +996,170 @@ router.use(requireAuth)
 
 
 
+`[25]` `we will log in as authorized user and create workouts. so we have to add authorized headers in Home.jsx, workoutForm.jsx, workoutDetails.jsx in fronend in test in UI. now working fine.`
 
+`Home.jsx`
+import React, { useEffect } from "react";
+
+import { useWorkoutsContext } from "../hooks/useWorkoutsContext";
+
+`//import useAuthContext to authorize user
+
+import { useAuthContext } from "../hooks/useAuthContext";`
+
+//components
+
+import WorkoutDetails from "../components/WorkoutDetails";
+
+import WorkoutForm from "../components/WorkoutForm";
+
+
+const Home = () => {
+
+  // replace useState with context.
+  
+  // const [workouts, setWorkouts] = useState(null);  
+  
+  //destructure useWorkoutsContext
+  
+  const { workouts, dispatch } = useWorkoutsContext();
+
+  `// we will authorize user. destructure by grabbing from useAuthContext
+  
+  const { user } = useAuthContext();`
+
+  // useEffect will fire a function when a component is rendered.
+  
+  //But we only want to fire once so provide dependency array as 2nd argument.
+  
+  useEffect(() => {
+  
+    const fetchWorkouts = async () => {
+    
+      // const response = await fetch("http://localhost:4000/api/workouts");
+
+     ` // add authorization headers inside fetch also
+     
+      const response = await fetch("/api/workouts", {
+      
+        headers: {
+        
+          'Authorization': `Bearer ${user.token}`
+          
+        }`
+        
+      });
+
+      const json = await response.json();
+
+      if (response.ok) {
+      
+        // replace setWorkouts with dispatch.
+        
+        // setWorkouts(json);
+        
+        dispatch({ type: "SET_WORKOUTS", payload: json });
+      }
+      
+    };
+
+    `// update fetchWorkouts() with if user exist
+
+    if (user) {
+    
+      fetchWorkouts();
+    }
+
+    // fetchWorkouts();
+    
+    //also update dependency array with user
+    
+  }, [dispatch, user]);`
+
+
+`in workoutFOrm.jsx`
+
+import React, { useState } from 'react';
+import {useWorkoutsContext} from '../hooks/useWorkoutsContext'
+
+//import useAuthContext to authorize user
+import { useAuthContext } from "../hooks/useAuthContext";
+
+
+const WorkoutForm = () => {
+  const {dispatch} = useWorkoutsContext()
+
+    // we will authorize user. destructure by grabbing from useAuthContext
+    const { user } = useAuthContext();
+
+    const[title, setTitle] = useState('');
+    const[load, setLoad] = useState('');
+    const[reps, setReps] = useState('');
+    const[error, setError] = useState(null);
+    const[emptyFields, setEmptyFields] = useState([]);
+
+
+    const handleSubmit = async (e)=> {
+      e.preventDefault();
+      if(!user) {
+        setError('You must be logged in')
+        return
+      }
+      const workout = { title, load, reps}
+
+        // const response = await fetch('http://localhost:4000/api/workouts', {
+        const response = await fetch('/api/workouts', {
+        method: 'POST',
+        body: JSON.stringify(workout),
+        headers: {
+          'Content-Type': 'application/json',
+          // add authorization headers
+          'Authorization': `Bearer ${user.token}`
+        }
+
+      })
+
+
+`in workoutDetails.jsx'
+
+import { useWorkoutsContext } from "../hooks/useWorkoutsContext";
+
+//import useAuthContext to authorize user
+import { useAuthContext } from "../hooks/useAuthContext";
+
+
+//date fns.
+import formatDistanceToNow from "date-fns/formatDistanceToNow";
+
+const WorkoutDetails = ({ workout }) => {
+  const { dispatch } = useWorkoutsContext();
+
+     // we will authorize user. destructure by grabbing from useAuthContext
+     const { user } = useAuthContext();
+
+  const handleClick = async () => {
+
+    if(!user) {
+      return
+    }
+    const response = await fetch(
+      // "http://localhost:4000/api/workouts/" + workout._id,
+      "/api/workouts/" + workout._id,
+      {
+        method: "DELETE",
+        // add headers.
+        headers: {
+          'Authorization': `Bearer ${user.token}`
+        }
+      }
+    );
+    const json = await response.json();
+
+<img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/0983d026-a253-465a-951d-7d9f8d2dfaf1">
+
+
+
+    
+
+    
 
