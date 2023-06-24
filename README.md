@@ -1355,7 +1355,7 @@ const getWorkouts = async (req, res)=> {
 
 
 
-`[29] then update useLogout.js hook i frontend as shown in below  and test in UI. All good. Now finished.`
+# `[29] then update useLogout.js hook in frontend as shown in below  and test in UI. All good. Now finished. Now depolying mern stack is a bit difficult part for me but I will try.`
 
 import { useAuthContext } from './useAuthContext'
 
