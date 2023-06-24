@@ -18,7 +18,7 @@
 
 
 
-# `[4]` `Clarification notes from my point of view`
+# `[4]` `Clarification notes from my point of view and may be wrong`
 
 `express : Express is minimal and flexible Node.js web applicaton framework.`
 
@@ -34,7 +34,7 @@
 
 `salt : random string of characters that gets added to user's password before it's get hashed.`
 
-`async, await : every single page application interaction with database is nature of async. async will take longer time to return promise so you have to use await (this is my layman/idiot understanding and may be wrong)`
+`async, await : every single page application interaction with database is nature of async. async will take longer time to return promise so you have to use await (this is my layman/idiot understanding )`
 
 `[5]` `For login and signup we need to use bcrypt/jwt/joi and e.t.c.`
 
