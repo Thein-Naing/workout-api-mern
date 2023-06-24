@@ -967,5 +967,27 @@ const requireAuth = async (req, res, next)=> {
 module.exports = requireAuth
 
 
+`[23]` ` in workouts.js route,requireAuth.js function will be implemented as below and tested in postman with get request, wrong token request  `
+
+const express = require('express');
+
+const router = express.Router();
+
+const Workout = require('../models/Workout');
+
+const { createWorkout, getWorkout, getWorkouts, deleteWorkout, updateWorkout } = require('../controllers/workouts')
+
+// import requireAuth.
+
+const requireAuth = require('../middleware/requireAuth')
+
+// fire first or require requireAuth for all routes to protect or ensure it is authorized before every routes.
+
+router.use(requireAuth)
+
+
+<img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/2a37ea53-1c4b-4260-a2cf-170dd9044956">
+<img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/757397df-e691-4e42-b149-595eb2c7c758">
+
 
 
