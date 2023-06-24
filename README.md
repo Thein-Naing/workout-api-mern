@@ -393,7 +393,7 @@ export const useAuthContext = () => {
 }
 
 
-9.//create Signup.js for signup forn in pages folder:
+9.//create Signup.js for signup form in pages folder:
 
 import { useState, useEffect } from "react";
 
@@ -450,7 +450,719 @@ const Signup = () => {
 export default Signup;
 
 
+// create Login form same as Signup page .
+
+import { useState, useEffect } from "react";
+
+const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log(email, password);
+  };
+  return (
+    <form className="signup" onSubmit={handleSubmit}>
+      <h3>Login</h3>
+
+      <label>Email:</label>
+      <input
+        type="email"
+        onChange={(e) => setEmail(e.target.value)}
+        value={email}
+      />
+
+      <label>Password:</label>
+      <input
+        type="password"
+        onChange={(e) => setPassword(e.target.value)}
+        value={password}
+      />
+      <button>Log in</button>
+    </form>
+  );
+};
+
+export default Login;
+
+//then export to route(App.js)
+
+import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+
+import Home from './pages/Home';
+import Navbar from './components/Navbar';
+import Signup from './pages/Signup';
+import Login from './pages/Login';
+// import WorkoutForm from './components/WorkoutForm';
+
+
+function App() {
+  return (
+    <div className="App">
+      <Router>
+        <Navbar />
+        <div className='pages'>
+          <Routes>
+
+            <Route
+            path="/"
+            element={ <Home />}
+            />
+
+            <Route
+            path="/signup"
+            element={ <Signup />}
+            />
+
+            <Route
+            path="/login"
+            element={ <Login />}
+            />
+
+          </Routes>
+        </div>
+      </Router>
+
+    </div>
+  );
+}
+
+export default App;
+
+
+//In Navbar.js , create link to login and signup :
+
+import { Link } from 'react-router-dom';
+
+const Navbar = () => {
+  return (
+  
+    <header className="container">
+    
+      <div>
+      
+        <Link to='/'>
+        
+        <h1>Workout Buddy</h1>
+        
+        </Link>
+        
+        <nav>
+        
+          <div>
+          
+          <Link to='/login'>Login</Link>
+          
+          <Link to='/signup'>Signup</Link>
+          
+          </div>
+          
+        </nav>
+        
+      </div>
+
+    </header>
+
+  )
+
+  }
+
+export default Navbar;
+
+  `[14]` `Already tested in dev tool for login and signup .It is working fine but we need to generate jwt token for safety. So we have to create custom/reusable hooks for Signup/Login/Logout for UI. Now logic is when we click button in Signup/Login components it will invoke console.log(email, password)(we will change logic later) and UI will show us this email and password. We will use the reusable/custom made hooks to handle all of the logic.`
+
+  <img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/e4b453cb-3814-4bc3-aba0-cfcc4e3c56f9">
+  <img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/ccb33f42-cb5e-4b91-859c-8141b21f159b">
+  <img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/e9d1682a-9e48-4e08-aa53-72bb5be26284">
 
 
 
+
+`[15]` Created useSignup.js hook for Signup form and test it .
+
+import { useState } from "react";
+import { useAuthContext } from "./useAuthContext";
+
+export const useSignup = () => {
+  const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(null);
+  const {dispatch} = useAuthContext()
+
+  const signup = async (email, password) => {
+    setIsLoading(true);
+    setError(null);
+
+    const response = await fetch("/api/user/signup", {
+      method: "POST",
+      headers: { "Content-type": "application/json" },
+      body: JSON.stringify({ email, password }),
+    });
+    const json = await response.json();
+    if (!response.ok) {
+      setError(json.error);
+      setIsLoading(false);
+    }
+
+    if (response.ok) {
+      //save the user to local storage
+      localStorage.setItem("user", JSON.stringify(json));
+            //update the auth context
+      dispatch({type:'LOGIN', payload:json})
+
+      setIsLoading(false);
+
+    }
+  }
+  return { signup, isLoading, error}
+};
+
+
+//then export to Signup.js component
+
+// then update Signup.js
+
+import { useState } from "react";
+import { useSignup } from "../hooks/useSignup";
+
+const Signup = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  //invoke useSignup hook
+  const {signup, error, isLoading} = useSignup();
+
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    // console.log(email, password);
+    //replace with useSignup hook state
+    await signup(email, password)
+
+
+  };
+  return (
+    <form className="signup" onSubmit={handleSubmit}>
+    
+      <h3>Signup</h3>
+
+      <label>Email:</label>
+      <input
+        type="email"
+        onChange={(e) => setEmail(e.target.value)}
+        value={email}
+      />
+
+      <label>Password:</label>
+      <input
+        type="password"
+        onChange={(e) => setPassword(e.target.value)}
+        value={password}
+      />
+            <button disable={isLoading}>Sign up</button>
+      {error && <div className='error'>{error}</div>}
+    </form>
+  );
+};
+
+// disable button when isLoading is false.
+
+export default Signup;
+
+ `header/payload/signature all are woking. but AuthContext state: is still {user: Null} we have to fix it.`
+
+<img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/cf75ca36-dd57-4320-8d5f-b7ba37305761">
+
+`in local storage , signup user is already saved.`
+<img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/dab467af-cff6-4edf-bc67-45e48297b913">
+
+
+
+
+`[16]` `Also create useLogout.js hook in hooks folder.`
+
+// import useAuthContext
+
+import { useAuthContext } from "./useAuthContext";
+
+export const useLogout = () => {
+
+  const { dispatch } = useAuthContext();
+  
+  const logout = () => {
+  
+    //remove user from storage
+    
+    localStorage.setItem("user");
+
+    //dispatch the logout action
+    
+    dispatch({ type: "LOGOUT" });
+    
+  };
+
+  return { logout };
+  
+};
+
+
+// use this hook inside Navbar. 
+
+`[17]` ` in Navbar , create a button for log0ut, made css styling .et.c. Now we have logout button.`
+
+import { Link } from 'react-router-dom';
+
+//import useLogout
+
+import { useLogout } from '../hooks/useLogout'
+
+const Navbar = () => {
+
+  const { logout } = useLogout()
+
+  const handleClick = () => {
+  
+    logout()
+    
+  }
+
+  return (
+  
+    <header>
+      <div className="container">
+      
+        <Link to="/">
+        
+          <h1>Workout Buddy</h1>
+          
+        </Link>
+        
+        <nav>
+
+                  <div>
+          
+            <button onClick={handleClick}>Log out</button>
+            
+          </div>
+          
+          <div>
+          
+            <Link to="/login">Login</Link>
+            
+            <Link to="/signup">Signup</Link>
+            
+          </div>
+          
+        </nav>
+        
+      </div>
+      
+    </header>
+    
+  )
+  
+}
+
+export default Navbar
+
+
+
+<img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/476520b6-663a-47bb-a1b1-ca9958fa30a8">
+
+<img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/912ce8a0-224a-4f72-a34d-7e3351fe4c7f">
+<img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/a3cacd85-fa6c-42b0-a723-eb185bae9aac">
+
+
+`[18]` `tested logout function working fine. But we nedd to create useLogin hook also`
+
+<img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/e0e735bd-89b4-4f07-a598-7a5bfab267dd">
+
+`[19]` `created useLogin hook and implemented in Login form and tested it and all working fine`.
+
+import { useState } from 'react'
+
+import { useAuthContext } from './useAuthContext'
+
+export const useLogin = () => {
+
+  const [error, setError] = useState(null)
+  
+  const [isLoading, setIsLoading] = useState(null)
+  
+  const { dispatch } = useAuthContext()
+
+  const login = async (email, password) => {
+  
+    setIsLoading(true)
+    
+    setError(null)
+
+    const response = await fetch('/api/user/login', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({ email, password })
+    })
+    const json = await response.json()
+
+    if (!response.ok) {
+      setIsLoading(false)
+      setError(json.error)
+    }
+    if (response.ok) {
+      // save the user to local storage
+      localStorage.setItem('user', JSON.stringify(json))
+
+      // update the auth context
+      dispatch({type: 'LOGIN', payload: json})
+
+      // update loading state
+      setIsLoading(false)
+    }
+  }
+
+  return { login, isLoading, error }
+}
+
+`login`
+<img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/f934fca1-512b-4e6b-b1d9-581989dc27fe">
+`logout`
+<img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/7cc30511-32ec-4ffe-bb31-8aa2230b853c">
+
+
+`[20]` `update Navbar for user status and test it ok but when we refresh the page all gone so we have to fix it. `
+
+import { Link } from 'react-router-dom';
+
+import { useAuthContext } from '../hooks/useAuthContext'
+
+
+//import useLogout
+
+import { useLogout } from '../hooks/useLogout'
+
+const Navbar = () => {
+
+  const { logout } = useLogout()
+  
+  const { user } = useAuthContext()
+  
+
+  const handleClick = () => {
+  
+    logout()
+    
+  }
+
+  return (
+  
+    <header>
+    
+      <div className="container">
+      
+        <Link to="/">
+
+        
+          <h1>Workout Buddy</h1>
+          
+        </Link>
+        
+        <nav>
+          {user && (
+          <div>
+            <span>{user.email}</span>
+            <button onClick={handleClick}>Log out</button>
+          </div>)}
+          {!user &&
+          (<div>
+            <Link to="/login">Login</Link>
+            <Link to="/signup">Signup</Link>
+          </div>)}
+        </nav>
+      </div>
+    </header>
+  )
+
+<img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/9993cd67-dc83-411c-b1f3-d169b311977e">
+
+
+
+`[21]we updated AuthContext hook as below and test it . Now after refresh, user value is still in server and loging in.`
+
+import { createContext, useReducer, useEffect } from "react";
+
+ //7. import and call useEffect once with JSON.parse.
+ 
+  useEffect(() =>{
+  
+    const user = JSON.parse(localStorage.getItem('user'))
+    
+    if (user) {
+    
+      dispatch({ type:"LOGIN", payload: user})
+      
+    }
+    
+  }, [])
+
+<img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/444ccf42-ae53-4e8c-a182-8b5fb88ce088">
+
+
+`[22]` `We will continue to authentication process for individual user for individual workouts . We will create requireAuth.js in middleware folder in backend whcih will fire up before every requests for workouts and prevent untauthorized users from creating workouts.`
+
+ requireAuth.js(in middleware folder in backend)
+ 
+const jwt = require('jsonwebtoken');
+
+const User = require('../models/User');
+
+
+// 1.declare middleware
+const requireAuth = async (req, res, next)=> {
+
+//2.verify authentication .
+// grab authorization(which should contain jwt token) from headers and destructure and declare
+
+  const { authorization} = req.headers
+
+//3.verify authorization exist
+
+  if (!authorization) {
+  
+    return res.status(401).json({error:'Authorization token required'})
+}
+
+//4.if authorization exist get jwt token from const { authorization}
+// Authorization: Bearer XXXX XXXX XXXX XXXX XXXX ....
+
+  const token = authorization.split(' ')[1]
+
+//5.import jwt for verify jwt token and add process.env.SECRET as 2nd argument for verify signature
+// then grab payload from token as _id. use try and catch.
+
+  try {
+  
+    const {_id } = jwt.verify(token, process.env.SECRET)
+
+//6. requireAuth function declare with req . so we will return with this.
+ //we need to  import user model.
+ // then we will use _id only to verify user.
+ // then call next for next request.
+
+ req.user = await User.findOne({_id}).select({_id})
+ 
+ next()
+
+  } catch (error) {
+  
+    console.log(error)
+    
+    res.status(401).json({error:'Request is not authorized'})
+    
+  }
+
+}
+
+//  then export requireAuth and we will implement in workouts route.
+
+module.exports = requireAuth
+
+
+`[23]` ` in workouts.js route,requireAuth.js function will be implemented as below and tested in postman with get request, wrong token request  `
+
+const express = require('express');
+
+const router = express.Router();
+
+const Workout = require('../models/Workout');
+
+const { createWorkout, getWorkout, getWorkouts, deleteWorkout, updateWorkout } = require('../controllers/workouts')
+
+// import requireAuth.
+
+const requireAuth = require('../middleware/requireAuth')
+
+// fire first or require requireAuth for all routes to protect or ensure it is authorized before every routes.
+
+router.use(requireAuth)
+
+
+<img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/2a37ea53-1c4b-4260-a2cf-170dd9044956">
+<img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/757397df-e691-4e42-b149-595eb2c7c758">
+
+
+`[24]` `so we try with registered user with authenticated jwt token and it works.` 
+<img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/64ce95f6-2dd7-401c-adbf-7b1627f915b2">
+<img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/732869a3-b633-4eee-b236-55b8c8a2f603">
+
+
+
+`[25]` `we will log in as authorized user and create workouts. so we have to add authorized headers in Home.jsx, workoutForm.jsx, workoutDetails.jsx in fronend in test in UI. now working fine.`
+
+`Home.jsx`
+import React, { useEffect } from "react";
+
+import { useWorkoutsContext } from "../hooks/useWorkoutsContext";
+
+`//import useAuthContext to authorize user
+
+import { useAuthContext } from "../hooks/useAuthContext";`
+
+//components
+
+import WorkoutDetails from "../components/WorkoutDetails";
+
+import WorkoutForm from "../components/WorkoutForm";
+
+
+const Home = () => {
+
+  // replace useState with context.
+  
+  // const [workouts, setWorkouts] = useState(null);  
+  
+  //destructure useWorkoutsContext
+  
+  const { workouts, dispatch } = useWorkoutsContext();
+
+  `// we will authorize user. destructure by grabbing from useAuthContext
+  
+  const { user } = useAuthContext();`
+
+  // useEffect will fire a function when a component is rendered.
+  
+  //But we only want to fire once so provide dependency array as 2nd argument.
+  
+  useEffect(() => {
+  
+    const fetchWorkouts = async () => {
+    
+      // const response = await fetch("http://localhost:4000/api/workouts");
+
+     ` // add authorization headers inside fetch also
+     
+      const response = await fetch("/api/workouts", {
+      
+        headers: {
+        
+          'Authorization': `Bearer ${user.token}`
+          
+        }`
+        
+      });
+
+      const json = await response.json();
+
+      if (response.ok) {
+      
+        // replace setWorkouts with dispatch.
+        
+        // setWorkouts(json);
+        
+        dispatch({ type: "SET_WORKOUTS", payload: json });
+      }
+      
+    };
+
+    `// update fetchWorkouts() with if user exist
+
+    if (user) {
+    
+      fetchWorkouts();
+    }
+
+    // fetchWorkouts();
+    
+    //also update dependency array with user
+    
+  }, [dispatch, user]);`
+
+
+`in workoutFOrm.jsx`
+
+import React, { useState } from 'react';
+import {useWorkoutsContext} from '../hooks/useWorkoutsContext'
+
+//import useAuthContext to authorize user
+import { useAuthContext } from "../hooks/useAuthContext";
+
+
+const WorkoutForm = () => {
+  const {dispatch} = useWorkoutsContext()
+
+    // we will authorize user. destructure by grabbing from useAuthContext
+    const { user } = useAuthContext();
+
+    const[title, setTitle] = useState('');
+    const[load, setLoad] = useState('');
+    const[reps, setReps] = useState('');
+    const[error, setError] = useState(null);
+    const[emptyFields, setEmptyFields] = useState([]);
+
+
+    const handleSubmit = async (e)=> {
+      e.preventDefault();
+      if(!user) {
+        setError('You must be logged in')
+        return
+      }
+      const workout = { title, load, reps}
+
+        // const response = await fetch('http://localhost:4000/api/workouts', {
+        const response = await fetch('/api/workouts', {
+        method: 'POST',
+        body: JSON.stringify(workout),
+        headers: {
+          'Content-Type': 'application/json',
+          // add authorization headers
+          'Authorization': `Bearer ${user.token}`
+        }
+
+      })
+
+
+`in workoutDetails.jsx'
+
+import { useWorkoutsContext } from "../hooks/useWorkoutsContext";
+
+//import useAuthContext to authorize user
+import { useAuthContext } from "../hooks/useAuthContext";
+
+
+//date fns.
+import formatDistanceToNow from "date-fns/formatDistanceToNow";
+
+const WorkoutDetails = ({ workout }) => {
+  const { dispatch } = useWorkoutsContext();
+
+     // we will authorize user. destructure by grabbing from useAuthContext
+     const { user } = useAuthContext();
+
+  const handleClick = async () => {
+
+    if(!user) {
+      return
+    }
+    const response = await fetch(
+      // "http://localhost:4000/api/workouts/" + workout._id,
+      "/api/workouts/" + workout._id,
+      {
+        method: "DELETE",
+        // add headers.
+        headers: {
+          'Authorization': `Bearer ${user.token}`
+        }
+      }
+    );
+    const json = await response.json();
+
+<img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/0983d026-a253-465a-951d-7d9f8d2dfaf1">
+
+<img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/e10a4a97-a458-4f3b-bbd3-221172e761cd">
+
+
+
+
+    
+
+    
 
