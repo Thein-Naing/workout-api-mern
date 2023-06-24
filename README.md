@@ -1234,6 +1234,166 @@ export default App;
 <img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/2daadb88-d314-4375-8e49-a146cdc89937">
 
 
+`[27] we also updated workout model, workouts controller and forntend a bit because of not separating individual users for workouts when fetching to UI
+The following UI showing same for users Mrbadguy@gmail.com and  MrBadGuy@gmail.com  so we still need to update`
+`inside createWorkout function of workouts controller`
+
+const createWorkout = async (req, res)=> {
+  const { title, reps, load} = req.body
+
+  let emptyFields = []
+
+  if(!title) {
+    emptyFields.push('title')
+  }
+
+  if(!load) {
+    emptyFields.push('load')
+  }
+
+  if(!reps) {
+    emptyFields.push('reps')
+  }
+
+  if (emptyFields.length > 0) {
+    return res.status(400).json({error: 'Please fill in all the fields', emptyFields})
+  }
+  //add workout to database.
+  
+  try {
+
+    // 1.add user_id here.
+    
+    //2.grab from req as user_id and use  inside try and catch.
+
+    const user_id = req.user._id
+
+    const workout = await Workout.create({
+    
+      //3.then add user_id to workout object.
+      
+      title, reps, load, user_id
+    })
+    
+    res.status(200).json(workout)
+
+  } catch (error) {
+    res.status(400).json({error: error.message})
+  }
+ };
+
+` And inside Workout model `
+
+const workoutSchema = new mongoose.Schema({
+  title: {
+      type: String,
+    required: true
+  },
+  
+   reps: {
+    type: Number,
+    required: true
+   },
+   
+   load: {
+    type: Number,
+    required: true
+   },
+
+
+   
+// add user_id for individual user.
+
+
+
+   user_id:{
+
+   
+    type: String,
 
     
+    required: true
+    
+   }
+   
+
+<img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/5b2e539b-48b8-4a9b-a5f9-cdf6db3fc23a">
+<img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/d4a924d8-fdec-46b1-aa2d-3dcb2cc6b8c9">
+
+
+
+
+
+
+
+
+
+
+
+`[28] First we test in postman by fetching this workouts. It works fine becsuase we get user_id now and then we will update workouts controller getWorkouts function like that;`
+    
+    // Get all workouts.
+    
+const getWorkouts = async (req, res)=> {
+
+  // we will limit here for individual user_id.
+  
+  const user_id = req.user._id
+  
+  const workouts = await Workout.find({ user_id }).sort({createdAt: -1})
+  
+  res.status(200).json(workouts)
+
+
+
+    
+
+
+<img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/7191c4de-a893-4bb6-a4e9-ec32781abeda">
+
+
+
+
+
+# `[29] then update useLogout.js hook in frontend as shown in below  and test in UI. All good. Now finished. Now depolying mern stack is a bit difficult part for me but I will try.`
+
+import { useAuthContext } from './useAuthContext'
+
+// import useWorkoutsContext
+
+import { useWorkoutsContext } from './useWorkoutsContext'
+
+export const useLogout = () => {
+
+  const { dispatch } = useAuthContext()
+  
+  //create dispatch for useWorkoutsContext
+  
+  const { dispatch: workoutsDispatch } = useWorkoutsContext()
+
+  const logout = () => {
+  
+    // remove user from storage
+    
+    localStorage.removeItem('user')
+
+    // dispatch logout action
+    
+    dispatch({ type: 'LOGOUT' })
+
+    // dispatch workoutsCOntext action
+    
+    dispatch({type: 'SET_WORKOUTS', payload: null})
+  }
+
+  return { logout }
+}
+
+
+`This is MrBadGuy@gmail.con ac`
+<img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/37d1490e-535d-4aaf-9b23-29b265e06dd4">
+
+`And this is Mrbadguy@gmail.com ac`
+<img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/6ff627b5-3559-48a7-87fc-7b9da2581d15">
+
 
