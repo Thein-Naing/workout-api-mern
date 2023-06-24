@@ -990,4 +990,11 @@ router.use(requireAuth)
 <img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/757397df-e691-4e42-b149-595eb2c7c758">
 
 
+`[24]` `so we try with registered user with authenticated jwt token and it works.` 
+<img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/64ce95f6-2dd7-401c-adbf-7b1627f915b2">
+<img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/732869a3-b633-4eee-b236-55b8c8a2f603">
+
+
+
+
 
