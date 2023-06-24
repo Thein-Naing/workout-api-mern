@@ -1,6 +1,7 @@
-# workout-api-mern-backend-Auth
-# This is continuation course from netninja.dev MERN crash course. you can buy all at www.netninja.dev.
-`[1]`-  `Before deploying in Render.com in my local host frontend and backend are working toghether fine . Now backend is not properly working on Render.com. I will try again tomorrow.`
+# `workout-api-mern-backend-Auth`
+# `This is continuation course from netninja.dev MERN crash course. you can buy all at www.netninja.dev. The instructor guy's explanation for this courses are also fxxxxxx awesome! `
+# `I follow this tutorial but I did all coding from scratch by avoding copy and paste from course so that I can create my own later and I also changed some coding and styling as per my layman/idiot understanding.`
+`[1]-  `Before deploying in Render.com in my local host frontend and backend are working toghether fine . Now backend is not properly working on Render.com. I will try again tomorrow.`
 
 `[2]`- `I changed folders/ files name and also some codings and css styling as per my layman/idiot understanding.`
 
@@ -17,7 +18,7 @@
 
 
 
-`[4]` `Clarification notes`
+# `[4]` `Clarification notes from my point of view and may be wrong`
 
 `express : Express is minimal and flexible Node.js web applicaton framework.`
 
@@ -33,7 +34,7 @@
 
 `salt : random string of characters that gets added to user's password before it's get hashed.`
 
-`async, await : every single page application interaction with database is nature of async. async will take longer time to return promise so you have to use await (this is my layman/idiot understanding and may be wrong)`
+`async, await : every single page application interaction with database is nature of async. async will take longer time to return promise so you have to use await (this is my layman/idiot understanding )`
 
 `[5]` `For login and signup we need to use bcrypt/jwt/joi and e.t.c.`
 
@@ -1159,10 +1160,80 @@ const WorkoutDetails = ({ workout }) => {
 
 <img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/e10a4a97-a458-4f3b-bbd3-221172e761cd">
 
+<img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/e712f961-0bbf-4cc6-a0f3-f3860979fc33">
+
+<img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/7a279c68-f4d6-4305-8f3b-0ac063275dad">
 
 
 
+
+
+
+  `[26] Update App.jsx in frontend to navigate user to individual routes, test in UI  and all good`
+
+  // import navigate hook to redirect user to individual routes
+//import useAuthContext to authorize user
+
+import { BrowserRouter as Router, Routes, Route, Navigate} from 'react-router-dom';
+
+import Home from './pages/Home';
+
+import Navbar from './components/Navbar';
+
+import Signup from './pages/Signup';
+
+import Login from './pages/Login';
+
+import { useAuthContext } from "./hooks/useAuthContext";
+
+
+function App() {
+
+ // we will authorize user. destructure by grabbing from useAuthContext
+ 
+    const { user } = useAuthContext();
+
+ //use ternary operator to navigate individual route.
+
+  return (
+  
+    <div className="App">
     
+      <Router>
+        <Navbar />
+        <div className='pages'>
+          <Routes>
+
+            <Route
+            path="/"
+            element={ user ? <Home /> : < Navigate to='/login' />}
+            />
+
+            <Route
+            path="/signup"
+            element={ !user ? <Signup /> : <Navigate to='/' />}
+            />
+
+            <Route
+            path="/login"
+            element={!user ? <Login /> : <navigate to='/' />}
+            />
+
+          </Routes>
+        </div>
+      </Router>
+
+    </div>
+  );
+}
+
+export default App;
+
+
+<img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/24e5c4e6-fb6a-475a-8340-53491d347bb0">
+<img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/2daadb88-d314-4375-8e49-a146cdc89937">
+
+
 
     
 
