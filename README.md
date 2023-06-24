@@ -1397,6 +1397,13 @@ export const useLogout = () => {
 `And this is Mrbadguy@gmail.com ac`
 <img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/6301e80d-8bb5-420e-a296-ad12e8f465ee">
 
+`Signup page`
+<img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/f56cd0a1-e0e8-4451-a603-62cc5236794a">
+
+`Login page`
+<img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/bcb800b2-000e-4def-af7a-d8daeabc225b">
+
+
 
 
 
