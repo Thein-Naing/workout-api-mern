@@ -1355,6 +1355,45 @@ const getWorkouts = async (req, res)=> {
 
 
 
+`[29] then update useLogout.js hook i frontend as shown in below  and test in UI. All good. Now finished.`
 
+import { useAuthContext } from './useAuthContext'
+
+// import useWorkoutsContext
+
+import { useWorkoutsContext } from './useWorkoutsContext'
+
+export const useLogout = () => {
+
+  const { dispatch } = useAuthContext()
+  
+  //create dispatch for useWorkoutsContext
+  
+  const { dispatch: workoutsDispatch } = useWorkoutsContext()
+
+  const logout = () => {
+  
+    // remove user from storage
+    
+    localStorage.removeItem('user')
+
+    // dispatch logout action
+    
+    dispatch({ type: 'LOGOUT' })
+
+    // dispatch workoutsCOntext action
+    
+    dispatch({type: 'SET_WORKOUTS', payload: null})
+  }
+
+  return { logout }
+}
+
+
+`This is MrBadGuy@gmail.con ac`
+<img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/37d1490e-535d-4aaf-9b23-29b265e06dd4">
+
+`And this is Mrbadguy@gmail.com ac`
+<img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/6ff627b5-3559-48a7-87fc-7b9da2581d15">
 
 
