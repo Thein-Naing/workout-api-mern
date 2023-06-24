@@ -1321,13 +1321,40 @@ const workoutSchema = new mongoose.Schema({
 <img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/d4a924d8-fdec-46b1-aa2d-3dcb2cc6b8c9">
 
 
-    `[28] First we test in postman by fetching this workouts. It works fine becsuase we get user_id now`
+
+
+
+
+
+
+
+
+
+`[28] First we test in postman by fetching this workouts. It works fine becsuase we get user_id now and then we will update workouts controller getWorkouts function like that;`
+    
+    // Get all workouts.
+    
+const getWorkouts = async (req, res)=> {
+
+  // we will limit here for individual user_id.
+  
+  const user_id = req.user._id
+  
+  const workouts = await Workout.find({ user_id }).sort({createdAt: -1})
+  
+  res.status(200).json(workouts)
+
 
 
     
 
 
 <img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/7191c4de-a893-4bb6-a4e9-ec32781abeda">
+
+
+
+
+
 
 
 
