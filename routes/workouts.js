@@ -6,6 +6,12 @@ const Workout = require('../models/Workout');
 
 const { createWorkout, getWorkout, getWorkouts, deleteWorkout, updateWorkout } = require('../controllers/workouts')
 
+// import requireAuth.
+const requireAuth = require('../middleware/requireAuth')
+
+// fire first or require requireAuth for all routes to protect or ensure it is authorized before every routes.
+router.use(requireAuth)
+
 //attach handlers for all workouts.
 
 // Get all workouts.
