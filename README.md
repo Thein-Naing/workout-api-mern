@@ -1,5 +1,5 @@
 # `workout-api-mern-backend-Auth`
-# `This is continuation course from netninja.dev MERN crash course. you can buy all at www.netninja.dev.`
+# `This is continuation course from netninja.dev MERN crash course. you can buy all at www.netninja.dev. The instructor guy's explanation for this courses are also fxxxxxx awesome! `
 # `I follow this tutorial but I did all coding from scratch by avoding copy and paste from course so that I can create my own later and I also changed some coding and styling as per my layman/idiot understanding.`
 `[1]-  `Before deploying in Render.com in my local host frontend and backend are working toghether fine . Now backend is not properly working on Render.com. I will try again tomorrow.`
 
