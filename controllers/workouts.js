@@ -5,7 +5,9 @@ const mongoose = require('mongoose');
 
 // Get all workouts.
 const getWorkouts = async (req, res)=> {
-  const workouts = await Workout.find({}).sort({createdAt: -1})
+  // we will limit here for individual user_id.
+  const user_id = req.user._id
+  const workouts = await Workout.find({ user_id }).sort({createdAt: -1})
   res.status(200).json(workouts)
 
 };
@@ -48,8 +50,15 @@ const createWorkout = async (req, res)=> {
   }
   //add workout to database.
   try {
+
+    // 1.add user_id here.
+    //2.grab from req as user_id and use  inside try and catch.
+
+    const user_id = req.user._id
+
     const workout = await Workout.create({
-      title, reps, load
+      //3.then add user_id to workout object.
+      title, reps, load, user_id
     })
     res.status(200).json(workout)
 
