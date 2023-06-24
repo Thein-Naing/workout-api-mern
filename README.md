@@ -1323,6 +1323,11 @@ const workoutSchema = new mongoose.Schema({
 
     `[28] First we test in postman by fetching this workouts. It works fine becsuase we get user_id now`
 
-    <img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/374dd340-4044-430d-ab48-870830332d81">
+
+    
+
+
+<img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/7191c4de-a893-4bb6-a4e9-ec32781abeda">
+
 
 
