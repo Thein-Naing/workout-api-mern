@@ -1161,6 +1161,9 @@ const WorkoutDetails = ({ workout }) => {
 
 <img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/e712f961-0bbf-4cc6-a0f3-f3860979fc33">
 
+<img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/7a279c68-f4d6-4305-8f3b-0ac063275dad">
+
+
 
 
 
