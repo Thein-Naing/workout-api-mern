@@ -1330,7 +1330,7 @@ const workoutSchema = new mongoose.Schema({
 
 
 
-`[28] First we test in postman by fetching this workouts. It works fine becsuase we get user_id now and then we will update workouts controller getWorkouts function like that;`
+`[28] First we test in postman by fetching this workouts. It works fine because we get user_id now and then we will update workouts controller getWorkouts function like that;`
     
     // Get all workouts.
     
