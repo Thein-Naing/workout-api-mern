@@ -1390,11 +1390,11 @@ export const useLogout = () => {
 }
 
 
-`This is MrBadGuy@gmail.con ac`
+`This is MrBadGuy@gmail.com account`
 <img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/48e4af92-7228-4c32-b837-2923b1b063f1">
 
 
-`And this is Mrbadguy@gmail.com ac`
+`And this is Mrbadguy@gmail.com account`
 <img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/6301e80d-8bb5-420e-a296-ad12e8f465ee">
 
 `Signup page`
