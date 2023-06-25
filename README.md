@@ -2,12 +2,9 @@
 # https://workoutbuddy-frontend.onrender.com/
  # you can signup and log in and create you own workouts. Thank you. Below is sample page for MrBadGuy@gmail.com account.
 
-<img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/0e9c52f2-5dd9-4fc0-96cb-d1e616e5948b">
+<img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/bbfb6d73-a9af-4beb-9483-14e5bed219a1">
 
-<img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/9845f0a0-ae18-4a50-a410-6e6e52669b7d">
-
-
-
+<img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/1fde8660-c8ba-4ae2-88eb-6cb1f655e40a">
 
 
 
