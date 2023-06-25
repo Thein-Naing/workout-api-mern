@@ -1,6 +1,6 @@
-# Finally can deploy both frontend and backend at Render.com successfully . You can check here and create you own workouts.
+# Finally can deploy both frontend and backend at Render.com successfully. You can check here.
 # https://workoutbuddy-frontend.onrender.com/
-# I made default page with MrBadGuy@gmail.com and you can logout this and signup and log in. Thank you.
+ # you can signup and log in and create you own workouts. Thank you. Below is sample page for MrBadGuy@gmail.com account.
 
 <img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/86d06219-e987-4863-9d3d-bd616992e608">
 
