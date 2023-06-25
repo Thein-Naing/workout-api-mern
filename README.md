@@ -4,17 +4,11 @@
 <img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/19eef9f2-91d0-49a7-9950-bba7a64bf990">
 <img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/5251aa01-a45a-469e-86bd-53e91b4a94e7">
 
-
-
-
-
-
-
-
-# `workout-api-mern-backend-Auth`
 # `This is continuation course from netninja.dev MERN crash course. you can buy all at www.netninja.dev. The instructor guy's explanation for this courses are also fxxxxxx awesome! `
-# `I follow this tutorial but I did all coding from scratch by avoding copy and paste from course so that I can create my own later and I also changed some coding and styling as per my layman/idiot understanding.`
-`[1]-  `Before deploying in Render.com in my local host frontend and backend are working toghether fine . Now backend is not properly working on Render.com. I will try again tomorrow.`
+`I follow this tutorial but I did all coding from scratch by avoding copy and paste from course so that I can create my own later and I also changed some coding and styling as per my layman/idiot understanding.`
+
+`[1]-  `Before deploying in Render.com in my local host frontend and backend are working toghether fine . Now backend is not properly working on Render.com.
+I will try again tomorrow.`
 
 `[2]`- `I changed folders/ files name and also some codings and css styling as per my layman/idiot understanding.`
 
