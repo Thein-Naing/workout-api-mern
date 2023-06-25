@@ -3,7 +3,8 @@
  # you can signup and log in and create you own workouts. Thank you. Below is sample page for MrBadGuy@gmail.com account.
 <img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/79e22247-28a8-4254-8349-fc348f6f252d">
 
-<img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/8bd733b8-1988-4838-82b8-bb31866e3c48">
+<img width="960" alt="image" src="https://github.com/Thein-Naing/workout-api-mern/assets/117463446/ef5f5ce0-8046-43e4-b8aa-a2d4294d864d">
+
 
 
 
